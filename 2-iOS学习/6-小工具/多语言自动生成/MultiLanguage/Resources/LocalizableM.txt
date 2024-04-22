@@ -1,0 +1,70 @@
+#import "RFP_NAMELocalizable.h"
+
+#define kAppLanguageKey @"appLanguage"
+
+@implementation RFP_NAMELocalizable
+
++ (NSString *)localizedLangaugeString:(NSString *)key, ... {
+    va_list args;
+    va_start(args, key);
+    NSString *value = [self localizedLangaugeString:key arguments:args];
+    va_end(args);
+    return value;
+}
+
++ (NSString *)localizedLangaugeString:(NSString *)key arguments:(va_list)args {
+
+    NSString *currentLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:kAppLanguageKey];
+    
+    if (!currentLanguage) {
+        return [RFP_NAMELocalizable localizedString:key arguments:args];
+    }
+    
+    NSBundle *bundle = [NSBundle bundleForClass:RFP_NAMELocalizable.class];
+    NSString *languagePath = [bundle pathForResource:[NSString stringWithFormat:@"%@", currentLanguage] ofType:@"lproj"];
+    
+    NSString *tableName = [self getTableName];
+    NSString *formatStr = [[NSBundle bundleWithPath:languagePath] localizedStringForKey:(key)
+                                                                                  value:nil
+                                                                                  table:tableName];
+    
+    if (!formatStr) {
+        return [RFP_NAMELocalizable localizedString:key arguments:args];
+    }
+    
+    return [[NSString alloc] initWithFormat:formatStr arguments:args];
+    
+}
+
++ (NSString *)localizedString:(NSString *)key arguments:(va_list)args {
+    NSString *tableName = [self getTableName];
+    NSBundle *bundle = [NSBundle bundleForClass:RFP_NAMELocalizable.class];
+    NSString *formatStr = NSLocalizedStringFromTableInBundle(key, tableName, bundle, nil);
+    return [[NSString alloc] initWithFormat:formatStr arguments:args];
+}
+
++ (NSString *)currentLanguageCode {
+    
+    NSString *currentLanguage = [[NSUserDefaults standardUserDefaults] objectForKey:kAppLanguageKey];
+    if (currentLanguage.length) {
+        return currentLanguage;
+    }
+    
+    currentLanguage = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+    
+    return currentLanguage;
+    
+}
+
++ (BOOL)isSystemArb {
+    NSArray *array = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+    NSString *strLang = [array objectAtIndex:0];
+    return [strLang hasPrefix:@"ar-"];
+}
+
++ (NSString *)getTableName {
+    return @"RFP_NAME";
+}
+
+@end
+

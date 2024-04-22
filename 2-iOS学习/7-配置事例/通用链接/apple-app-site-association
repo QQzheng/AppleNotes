@@ -1,0 +1,16 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "H6BLRL6Y22.com.xxx.xxxxx",
+                "paths": [ "*" ]
+            },{
+                "appID":"H6BLRL6Y22.com.xxx.xxxxx.test",
+                 "paths": [ "/Official/*"]
+            }
+        ]
+    }
+}
+
+//1.可以配置多个bundleID

@@ -1,0 +1,18 @@
+
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface RFP_NAMELocalizable : NSObject
+
++ (NSString *)localizedLangaugeString:(NSString *)key, ...;
+
+//当前语言编码
++ (NSString *)currentLanguageCode;
+
+//是否iOS系统设置了阿拉伯语
++ (BOOL)isSystemArb;
+
+@end
+
+NS_ASSUME_NONNULL_END
