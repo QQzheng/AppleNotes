@@ -1,5 +1,5 @@
 1.线上工具：https://www.zybuluo.com/mdeditor， 语法参考：https://www.zybuluo.com/mdeditor?url=https%3A%2F%2Fwww.zybuluo.com%2Fstatic%2Feditor%2Fmd-help.markdown
-2.使用VScode，插件：markdown all in one 使用shift+ctrl+v展示效果
+2.使用VScode，插件：markdown all in one 使用shift+command+v展示效果
 
 # Markdown 简明语法手册
 
